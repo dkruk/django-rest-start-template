@@ -1,0 +1,38 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: database_password
+      POSTGRES_USER: database_user
+      POSTGRES_DB: database_name
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "15432:5432"
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "16379:6379"
+  app:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/src
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+  dramatiq:
+    build: .
+    command: python manage.py rundramatiq
+    volumes:
+      - ./:/src
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  project-data:

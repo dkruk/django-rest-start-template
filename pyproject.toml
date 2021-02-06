@@ -1,0 +1,41 @@
+[tool.poetry]
+version = "0.1.0"
+name = "django-rest-start-template"
+description = "Base template for Django REST application."
+authors = ["Dzmitry <dkrukouski@gmail.com>"]
+
+[tool.poetry.dependencies]
+Django = "^3.1.5"
+Markdown = "^3.3.3"
+django-cors-headers = "^3.6.0"
+django-environ = "^0.4.5"
+django-filter = "^2.4.0"
+django-redis = "^4.12.1"
+djangorestframework = "^3.12.2"
+djangorestframework-camel-case = "^1.2.0"
+drf-spectacular = "^0.13.1"
+psycopg2 = "^2.8.6"
+python = "^3.9"
+raven = "^6.10.0"
+redis = "^3.5.3"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.5.4"
+django-debug-toolbar = "^3.2"
+flake8 = "^3.8.4"
+flake8-isort = "^4.0.0"
+isort = "^5.7.0"
+mypy = "^0.800"
+pytest = "^6.0"
+pytest-cov = "^2.11.0"
+pytest-django = "^4.1.0"
+
+[tool.isort]
+include_trailing_comma = true
+known_first_party = ["authentication", "core", "user"]
+line_length = 100
+multi_line_output = 3
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
