@@ -1,8 +1,8 @@
 [tool.poetry]
-version = "0.1.0"
-name = "django-rest-start-template"
-description = "Base template for Django REST application."
 authors = ["Dzmitry <dkrukouski@gmail.com>"]
+description = "Base template for Django REST application."
+name = "django-rest-start-template"
+version = "0.1.0"
 
 [tool.poetry.dependencies]
 Django = "^3.1.5"
@@ -22,13 +22,17 @@ redis = "^3.5.3"
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.4"
 django-debug-toolbar = "^3.2"
+factory-boy = "^3.2.0"
 flake8 = "^3.8.4"
 flake8-isort = "^4.0.0"
+ipython = "^7.20.0"
 isort = "^5.7.0"
 mypy = "^0.800"
 pytest = "^6.0"
 pytest-cov = "^2.11.0"
 pytest-django = "^4.1.0"
+pytest-mock = "^3.5.1"
+pytest-randomly = "^3.5.0"
 
 [tool.isort]
 include_trailing_comma = true

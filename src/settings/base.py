@@ -1,4 +1,3 @@
-import logging
 import os
 import sys
 from pathlib import Path
@@ -8,11 +7,9 @@ from django.utils.log import DEFAULT_LOGGING
 
 from src import __version__
 
-from .global_constants import LOCAL_ENV
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-PROJECT_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+PROJECT_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(os.path.join(PROJECT_DIR, 'apps'))
 
 # Read environment variables
@@ -23,13 +20,13 @@ env = environ.Env(
 environ.Env.read_env(f'{BASE_DIR}/.env')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default='qwerty')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
-ENVIRONMENT = env('ENVIRONMENT', default=LOCAL_ENV)
+ENVIRONMENT = env('ENVIRONMENT')
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -132,11 +129,6 @@ CACHES = {
         'TIMEOUT': 60 * 60 * 12  # 12 hours
     }
 }
-
-if env('DISABLE_CACHE', default=False):
-    CACHES['default'] = {
-        'BACKEND': 'core.cache.ExtendedDummyCache'
-    }
 
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = 60 * 60 * 24  # one day
@@ -302,8 +294,6 @@ LOGGING = {
     },
 }
 
-
-SENTRY_CELERY_LOGLEVEL = logging.ERROR
 RAVEN_CONFIG = {
     'dsn': (
         f"https://{env('SENTRY_PUBLIC_KEY', default='')}"
@@ -330,22 +320,5 @@ SPECTACULAR_SETTINGS: dict = {
     'COMPONENT_SPLIT_REQUEST': True,
 }
 
-if ENVIRONMENT == LOCAL_ENV:
-    # Disable Sentry
-    RAVEN_CONFIG = {}
-
-    # Add Django debug tool bar
-    INSTALLED_APPS.append('debug_toolbar')
-    MIDDLEWARE.insert(1, 'debug_toolbar.middleware.DebugToolbarMiddleware')
-    INTERNAL_IPS = [
-        '127.0.0.1',
-    ]
-
-    # Switch on Browser render to display debug panel.
-    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = (  # type: ignore
-        'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
-    ) + REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES']
-
-    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = (  # type: ignore
-        'rest_framework.authentication.SessionAuthentication',
-    ) + REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES']
+# Means that unittests are running
+IS_TEST = False
