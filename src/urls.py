@@ -31,7 +31,6 @@ api_v1_urlpatterns: list = [
 
 urlpatterns = [
     path('api/v1/', include((api_v1_urlpatterns, 'api_v1'))),
-
     path('admin/', admin.site.urls),
 ]
 
