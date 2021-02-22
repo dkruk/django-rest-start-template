@@ -25,6 +25,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 ENVIRONMENT = env('ENVIRONMENT')
+DJANGO_ADMIN_URL = env('DJANGO_ADMIN_URL')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
@@ -33,6 +34,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 PROJECT_APPS = [
     'authentication',
     'core',
+    'fake_admin',
     'user',
 ]
 

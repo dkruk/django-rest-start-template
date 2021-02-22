@@ -30,8 +30,10 @@ api_v1_urlpatterns: list = [
 ]
 
 urlpatterns = [
+    path('admin/', include(('fake_admin.urls', 'fake_admin'), namespace='fake_admin')),
+
     path('api/v1/', include((api_v1_urlpatterns, 'api_v1'))),
-    path('admin/', admin.site.urls),
+    path(f'{settings.DJANGO_ADMIN_URL}/', admin.site.urls),
 ]
 
 if settings.DEBUG:
