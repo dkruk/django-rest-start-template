@@ -1,0 +1,25 @@
+repos:
+  - repo: local
+    hooks:
+      - id: autopep8
+        name: run autopep8
+        description: fix code style with autopep8
+        language: python
+        files: \.py$
+        entry: autopep8
+        args: ["-i", "-r", "src"]
+      - id: flake8
+        name: run flake8
+        description: check code style with flake8
+        language: python
+        files: \.py$
+        entry: flake8
+      - id: mypy
+        name: run mypy
+        description: check typing with mypy
+        language: python
+        files: ^src/
+        entry: mypy src
+        pass_filenames: false
+default_language_version:
+  python: python3.9
