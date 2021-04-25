@@ -1,23 +1,22 @@
 [tool.poetry]
-authors = ["Dzmitry <dkrukouski@gmail.com>"]
-description = "Base template for Django REST application."
 name = "django-rest-start-template"
 version = "0.1.0"
+description = "Base template for Django REST application."
+authors = ["Dzmitry <dkrukouski@gmail.com>"]
 
 [tool.poetry.dependencies]
-Django = "^3.1.5"
-Markdown = "^3.3.3"
-django-cors-headers = "^3.6.0"
+python = "^3.9"
+Django = "^3.2"
+Markdown = "^3.3.4"
+django-cors-headers = "^3.7.0"
 django-environ = "^0.4.5"
 django-filter = "^2.4.0"
 django-redis = "^4.12.1"
-djangorestframework = "^3.12.2"
+djangorestframework = "^3.12.4"
 djangorestframework-camel-case = "^1.2.0"
-drf-spectacular = "^0.14.0"
-psycopg2 = "^2.8.6"
-python = "^3.9"
-raven = "^6.10.0"
-redis = "^3.5.3"
+drf-spectacular = "^0.15.0"
+psycopg2-binary = "^2.8.6"
+sentry-sdk = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.6"
@@ -27,13 +26,12 @@ flake8 = "^3.9.0"
 flake8-isort = "^4.0.0"
 ipython = "^7.22.0"
 isort = "^5.8.0"
-mypy = "^0.800"
-pre-commit = "^2.11.1"
-pytest = "^6.0"
-pytest-cov = "^2.11.0"
+mypy = "^0.812"
+pre-commit = "^2.12.0"
+pytest = "^6.2.3"
+pytest-cov = "^2.11.1"
 pytest-django = "^4.1.0"
 pytest-mock = "^3.5.1"
-pytest-randomly = "^3.5.0"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
