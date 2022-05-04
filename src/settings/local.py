@@ -4,9 +4,6 @@ Settings for local development.
 
 from src.settings.base import *
 
-# Disable Sentry
-RAVEN_CONFIG = {}
-
 # Add Django debug tool bar
 INSTALLED_APPS.append('debug_toolbar')
 MIDDLEWARE.insert(1, 'debug_toolbar.middleware.DebugToolbarMiddleware')

@@ -265,43 +265,25 @@ LOGGING = {
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         },
-        'sentry': {
-            'level': 'ERROR',
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-            'tags': {'environment': ENVIRONMENT},
-            'filters': ['require_debug_false'],
-        },
         'django.server': DEFAULT_LOGGING['handlers']['django.server'],
     },
     'loggers': {
         '': {
-            'handlers': ['sentry', 'console'],
+            'handlers': ['console'],
             'level': 'WARNING',
         },
         'django.request': {
-            'handlers': ['mail_admins', 'console', 'logfile', 'sentry'],
+            'handlers': ['mail_admins', 'console', 'logfile'],
             'level': 'INFO',
             'propagate': True,
         },
-        'sentry.errors': {
-            'propagate': False,
-            'handlers': ['sentry']
-        },
         'project': {
-            'handlers': ['logfile', 'sentry', 'server_console'],
+            'handlers': ['logfile', 'server_console'],
             'level': 'INFO',
             'propagate': False
         },
         'django.server': DEFAULT_LOGGING['loggers']['django.server'],
     },
-}
-
-RAVEN_CONFIG = {
-    'dsn': (
-        f"https://{env('SENTRY_PUBLIC_KEY', default='')}"
-        f":{env('SENTRY_SECRET_KEY', default='')}"
-        f"@sentry.io/{env('SENTRY_PROJECT_ID', default='')}"
-    ),
 }
 
 
