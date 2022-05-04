@@ -2,9 +2,9 @@
 Simple Django project template for REST API with my preferred setup. The template is just for a quick start and covers only the base things. If you looking for more complex templates, please look at projects like [django-project-template](https://github.com/jpadilla/django-project-template) or [wemake-django-template](https://github.com/wemake-services/wemake-django-template).
 
 ## Stack
-* Python 3.9;
-* Postgres 13 as database;
-* Redis 6 as cache and message broker.
+* Python 3.10;
+* Postgres 14 as database;
+* Redis 7 as cache and message broker.
 
 ## Features
 * [Django](https://www.djangoproject.com/) - python web framework;
