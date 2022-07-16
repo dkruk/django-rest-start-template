@@ -23,5 +23,3 @@ REST_FRAMEWORK['DEFAULT_THROTTLE_CLASSES'] = {}
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.MD5PasswordHasher',
 ]
-
-RAVEN_CONFIG = {}

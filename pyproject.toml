@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-rest-start-template"
-version = "0.1.0"
+version = "0.0.1"
 description = "Base template for Django REST application."
 authors = ["Dzmitry <dkrukouski@gmail.com>"]
 
@@ -26,7 +26,7 @@ flake8 = "^4.0"
 flake8-isort = "^4.1"
 ipython = "^8.3"
 isort = "^5.10"
-mypy = "^0.950"
+mypy = "^0.961"
 pre-commit = "^2.18"
 pytest = "^7.1"
 pytest-cov = "^3.0"

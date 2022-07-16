@@ -91,7 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'src.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -106,6 +105,8 @@ DATABASES = {
         'CONN_MAX_AGE': None,
     }
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 REDIS_HOST = env('REDIS_HOST')
 REDIS_PORT = env('REDIS_PORT')
