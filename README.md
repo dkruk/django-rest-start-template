@@ -1,5 +1,6 @@
 # Django REST start template
-Simple Django project template for REST API with my preferred setup. The template is just for a quick start and covers only the base things. If you looking for more complex templates, please look at projects like [django-project-template](https://github.com/jpadilla/django-project-template) or [wemake-django-template](https://github.com/wemake-services/wemake-django-template).
+Simple Django project template for REST API with my preferred setup.
+The template is just for a quick start and covers only the base things.
 
 ## Stack
 * Python 3.10;
@@ -25,11 +26,3 @@ Simple Django project template for REST API with my preferred setup. The templat
 ### Docker
 
 Docker settings is for development only.
-
-### Why is there no setting for background tasks?
-
-Background tasks is needed on almost all projects, but various approaches can be used to implement it. The most common solution is [Celery](https://docs.celeryproject.org/en/stable/index.html), but [Dramatiq](https://dramatiq.io/) and other solutions are also commonly used. At the moment, I cannot choose one thing.
-
-### Why is there no setting for deploy?
-
-The number of options here is much larger than in background tasks, so choosing one thing is also very difficult.
