@@ -11,8 +11,13 @@ class AutoSchema(BaseAutoSchema):
     Custom AutoSchema for correct work Dynamic Serializers.
     """
 
-    def _get_serializer_name(self, serializer: type['Serializer'], direction: str) -> str:
+    def _get_serializer_name(
+        self,
+        serializer: type['Serializer'],
+        direction: str,
+        bypass_extensions: bool = False,
+    ) -> str:
         if getattr(serializer, 'ref_name', None) is not None:
             return serializer.ref_name
 
-        return super()._get_serializer_name(serializer, direction)
+        return super()._get_serializer_name(serializer, direction, bypass_extensions)
