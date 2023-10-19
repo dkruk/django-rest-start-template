@@ -1,8 +1,12 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+
 [tool.poetry]
 name = "django-rest-start-template"
 version = "0.0.1"
 description = "Base template for Django REST application."
-authors = ["Dzmitry <dkrukouski@gmail.com>"]
+authors = ["Dzmitry"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -23,6 +27,7 @@ autopep8 = "^2.0"
 django-debug-toolbar = "^4.0"
 factory-boy = "^3.2"
 flake8 = "^6.0"
+flake8-pyproject = "^1.2.3"
 flake8-isort = "^6.0"
 ipython = "^8.13"
 isort = "^5.12"
@@ -33,6 +38,59 @@ pytest-cov = "^4.0"
 pytest-django = "^4.5"
 pytest-mock = "^3.10"
 
-[build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core>=1.0.0"]
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "src.settings.test"
+testpaths = ["tests"]
+filterwarnings = ["ignore::UserWarning"]
+addopts = [
+    "--nomigrations",
+    "-x",
+    "--cov=src",
+    "--cov-report",
+    "term-missing",
+    "-v",
+]
+norecursedirs = [
+    "logs",
+    "media",
+    "node_modules",
+    "migrations",
+    "__pycache__",
+    ".git",
+    "static",
+    "templates",
+]
+python_files = ["*_test.py", "test_*.py"]
+
+[tool.coverage.run]
+omit = ["*/migrations/*", "*/apps.py", "*/__init__.py"]
+
+[tool.flake8]
+verbose = 2
+max-line-length = 100
+max-complexity = 10
+exclude = ["__pycache__", "*migrations*", "venv"]
+ignore = [
+    # F403 'from module import *' used; unable to detect undefined names
+    "F403",
+    # F405 name may be undefined, or defined from star imports: module
+    "F405",
+    # Line break occurred before a binary operator
+    "W503",
+]
+
+[tool.isort]
+include_trailing_comma = true
+known_first_party = ["authentication", "core", "fake_admin", "user"]
+line_length = 100
+multi_line_output = 3
+
+[tool.mypy]
+# Mypy configuration:
+# https://mypy.readthedocs.io/en/latest/config_file.html
+python_version = 3.11
+warn_return_any = false
+warn_unused_configs = true
+check_untyped_defs = true
+ignore_missing_imports = true
+exclude = ["migrations", "venv"]
