@@ -3,6 +3,8 @@ import sys
 from pathlib import Path
 
 import environ
+import sentry_sdk
+
 from django.utils.log import DEFAULT_LOGGING
 
 from src import __version__
@@ -170,8 +172,6 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
-
 USE_TZ = True
 
 
@@ -304,6 +304,12 @@ SPECTACULAR_SETTINGS: dict = {
     },
     'COMPONENT_SPLIT_REQUEST': True,
 }
+
+sentry_sdk.init(
+    dsn=env('SENTRY_DSN'),
+    enable_tracing=True,
+    environment=ENVIRONMENT,
+)
 
 # Means that unittests are running
 IS_TEST = False

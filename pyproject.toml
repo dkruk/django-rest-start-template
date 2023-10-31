@@ -20,9 +20,9 @@ djangorestframework = "^3.14"
 djangorestframework-camel-case = "^1.4"
 drf-spectacular = "^0.25"
 psycopg2-binary = "^2.9"
-sentry-sdk = "^1.21"
+sentry-sdk = {extras = ["django"], version = "^1.33.0"}
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 autopep8 = "^2.0"
 django-debug-toolbar = "^4.0"
 factory-boy = "^3.2"
@@ -93,4 +93,4 @@ warn_return_any = false
 warn_unused_configs = true
 check_untyped_defs = true
 ignore_missing_imports = true
-exclude = ["migrations", "venv"]
+exclude = ["migrations", "venv", "postgres-data"]

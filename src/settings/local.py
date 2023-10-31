@@ -19,3 +19,6 @@ REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = (  # type: ignore
 REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = (  # type: ignore
     'rest_framework.authentication.SessionAuthentication',
 ) + REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES']
+
+# Disable Sentry for local development.
+sentry_sdk.init(dsn=None)

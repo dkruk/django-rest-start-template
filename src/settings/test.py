@@ -23,3 +23,6 @@ REST_FRAMEWORK['DEFAULT_THROTTLE_CLASSES'] = {}
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.MD5PasswordHasher',
 ]
+
+# Disable Sentry for tests.
+sentry_sdk.init(dsn=None)

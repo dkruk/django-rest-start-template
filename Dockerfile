@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED 1 \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100
 
-RUN pip install "poetry==1.2.0"
+RUN pip install "poetry==1.6.1"
 
 RUN mkdir /project
 WORKDIR /project
