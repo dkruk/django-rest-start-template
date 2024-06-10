@@ -3,7 +3,7 @@ Simple Django project template for REST API with my preferred setup.
 The template is just for a quick start and covers only the base things.
 
 ## Stack
-* Python 3.11;
+* Python 3.12;
 * Postgres 15 as database;
 * Redis 7 as cache and message broker.
 
