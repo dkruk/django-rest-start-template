@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ServiceException(Exception):
-    default_detail = _('Service Exception')
+    default_detail = _("Service Exception")
 
     def __init__(self, detail: Optional[str] = None) -> None:
         if detail is None:

@@ -13,11 +13,11 @@ class AutoSchema(BaseAutoSchema):
 
     def _get_serializer_name(
         self,
-        serializer: type['Serializer'],
+        serializer: type["Serializer"],
         direction: str,
         bypass_extensions: bool = False,
     ) -> str:
-        if getattr(serializer, 'ref_name', None) is not None:
+        if getattr(serializer, "ref_name", None) is not None:
             return serializer.ref_name
 
         return super()._get_serializer_name(serializer, direction, bypass_extensions)

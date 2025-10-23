@@ -14,8 +14,8 @@ class UserManager(BaseUserManager):
         password: str,
         is_staff: bool,
         is_superuser: bool,
-        **extra_fields
-    ) -> 'User':
+        **extra_fields: dict,
+    ) -> "User":
         """
         Creates and saves a User with the given email and password.
         """
@@ -33,7 +33,13 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_user(self, email: str, first_name: str, password: str, **extra_fields) -> 'User':
+    def create_user(
+        self,
+        email: str,
+        first_name: str,
+        password: str,
+        **extra_fields: dict,
+    ) -> "User":
         return self._create_user(email, first_name, password, False, False, **extra_fields)
 
     def create_superuser(
@@ -41,6 +47,6 @@ class UserManager(BaseUserManager):
         email: str,
         first_name: str,
         password: str,
-        **extra_fields,
-    ) -> 'User':
+        **extra_fields: dict,
+    ) -> "User":
         return self._create_user(email, first_name, password, True, True, **extra_fields)

@@ -88,6 +88,10 @@ ignore = [
 "*/test_*.py" = [
     "ANN201", # disable "Missing return type annotation for public function" for tests
 ]
+"src/settings/local.py" = [
+    "F403", # disable "unable to detect undefined names"
+    "F405", # disable "<variable> may be undefined, or defined from star imports"
+]
 
 [tool.ruff.lint.mccabe]
 max-complexity = 10
@@ -121,4 +125,4 @@ warn_return_any = false
 warn_unused_configs = true
 check_untyped_defs = true
 ignore_missing_imports = true
-exclude = ["migrations", "venv", "postgres-data"]
+exclude = ["migrations", ".venv", "postgres-data"]

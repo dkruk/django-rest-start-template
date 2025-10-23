@@ -8,25 +8,25 @@ from rest_framework import serializers
 class DynamicFieldsSerializerMixin:
     fields: dict[str, Type[serializers.Field]]
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: tuple, **kwargs: dict) -> None:
         # Don't pass the 'fields' and 'exclude' args up to the superclass
-        fields = kwargs.pop('fields', None)
-        exclude = kwargs.pop('exclude', None)
+        fields = kwargs.pop("fields", None)
+        exclude = kwargs.pop("exclude", None)
 
         # ref_name is used for API documentation generation.
         # drf_speculator ignores any fields limitations and registers all
         # Serializers with the settings that were used during the first initialization.
         # This can lead to incorrect API descriptions.
         # To avoid this set ref_name when use Serializer with fields limitations.
-        self.ref_name = kwargs.pop('ref_name', None)
+        self.ref_name = kwargs.pop("ref_name", None)
         if (fields or exclude) and self.ref_name is None:
             warnings.warn(
-                f'Set `ref_name` to {self.__class__.__name__} where it used with '
-                '`fields` or `exclude` arguments to avoid issues with API Documentation.'
+                f"Set `ref_name` to {self.__class__.__name__} where it used with "
+                "`fields` or `exclude` arguments to avoid issues with API Documentation."
             )
 
         if fields and exclude:
-            raise Exception(_('Only one option is available at a time.'))
+            raise Exception(_("Only one option is available at a time."))
 
         # Instantiate the superclass normally
         super().__init__(*args, **kwargs)  # type: ignore
@@ -51,6 +51,7 @@ class DynamicFieldsSerializer(DynamicFieldsSerializerMixin, serializers.Serializ
     A Serializer that takes an additional 'fields' and 'exclude' arguments that
     controls which fields should be displayed.
     """
+
     pass
 
 
@@ -60,10 +61,10 @@ class DynamicFieldsModelSerializer(DynamicFieldsSerializerMixin, serializers.Mod
     controls which fields should be displayed.
     """
 
-    def create(self, *args, **kwargs):
+    def create(self, *args: tuple, **kwargs: dict) -> None:
         # Do not use serializers to instantiate.
         raise Exception
 
-    def update(self, *args, **kwargs):
+    def update(self, *args: tuple, **kwargs: dict) -> None:
         # Do not use serializers to instantiate.
         raise Exception

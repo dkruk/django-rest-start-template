@@ -12,15 +12,14 @@ if TYPE_CHECKING:
 
 
 class ExpiredTokenFilter(admin.SimpleListFilter):
-
     # Human-readable title which will be displayed in the
     # right admin sidebar just above the filter options.
-    title: str = _('Expired')
+    title: str = _("Expired")
 
     # Parameter for the filter that will be used in the URL query.
-    parameter_name: str = 'expired'
+    parameter_name: str = "expired"
 
-    def lookups(self, *_args) -> list[tuple[str, str]]:
+    def lookups(self, *args: tuple) -> list[tuple[str, str]]:
         """
         Returns a list of tuples. The first element in each
         tuple is the coded value for the option that will
@@ -32,9 +31,9 @@ class ExpiredTokenFilter(admin.SimpleListFilter):
 
     def queryset(
         self,
-        _request: 'AuthToken',
-        queryset: 'QuerySet[AuthToken]',
-    ) -> 'QuerySet[AuthToken]':
+        _request: "AuthToken",
+        queryset: "QuerySet[AuthToken]",
+    ) -> "QuerySet[AuthToken]":
         """
         Returns the filtered queryset based on the value
         provided in the query string and retrievable via
@@ -53,10 +52,10 @@ class ExpiredTokenFilter(admin.SimpleListFilter):
 
 
 class AuthTokenAdmin(admin.ModelAdmin):
-    list_display = ('key', 'user', 'created_at', 'expires_at', 'user_agent')
-    list_filter = (ExpiredTokenFilter, )
-    list_select_related = ('user', )
-    search_fields = ('user__first_name', 'user__last_name', 'user__email')
+    list_display = ("key", "user", "created_at", "expires_at", "user_agent")
+    list_filter = (ExpiredTokenFilter,)
+    list_select_related = ("user",)
+    search_fields = ("user__first_name", "user__last_name", "user__email")
 
 
 admin.site.register(AuthToken, AuthTokenAdmin)
