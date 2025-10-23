@@ -1,19 +1,20 @@
 repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.1
+    hooks:
+      # Run the formatter.
+      - id: ruff-format
+      # Run the linter.
+      - id: ruff-check
+        description: Lint Python code with Ruff
+  - repo: https://github.com/pycqa/isort
+    rev: 7.0.0
+    hooks:
+      - id: isort
+        name: isort
+        description: Automatically sorts the imports in a specific order.
   - repo: local
     hooks:
-      - id: autopep8
-        name: run autopep8
-        description: fix code style with autopep8
-        language: python
-        files: \.py$
-        entry: autopep8
-        args: ["-i", "-r", "src"]
-      - id: flake8
-        name: run flake8
-        description: check code style with flake8
-        language: python
-        files: \.py$
-        entry: flake8
       - id: mypy
         name: run mypy
         description: check typing with mypy
@@ -21,5 +22,6 @@ repos:
         files: ^src/
         entry: mypy src
         pass_filenames: false
+
 default_language_version:
-  python: python3.10
+  python: python3.14
