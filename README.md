@@ -3,9 +3,9 @@ Simple Django project template for REST API with my preferred setup.
 The template is just for a quick start and covers only the base things.
 
 ## Stack
-* Python 3.12;
-* Postgres 15 as database;
-* Redis 7 as cache and message broker.
+* Python 3.14;
+* Postgres 16 as database;
+* Redis 8 as cache and message broker.
 
 ## Features
 * [Django](https://www.djangoproject.com/) - python web framework;
@@ -17,9 +17,8 @@ The template is just for a quick start and covers only the base things.
 
 ### Dev features
 * [pytest](https://github.com/pytest-dev/pytest) - for unit and integration tests;
-* [flake8](https://github.com/PyCQA/flake8) - check code style;
+* [ruff](https://github.com/astral-sh/ruff) - check code style;
 * [mypy](https://github.com/python/mypy) - check types;
-* [autopep8](https://github.com/hhatto/autopep8) - automatically update code style;
 * [isort](https://github.com/PyCQA/isort) - keeps imports in the correct way;
 * [django-debug-toolbar](https://github.com/jazzband/django-debug-toolbar) - to find weak points in the project.
 
