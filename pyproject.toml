@@ -1,43 +1,39 @@
-[build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core>=1.8.0"]
-
-[tool.poetry]
+[project]
 name = "django-rest-start-template"
 version = "0.0.1"
-package-mode = false
 description = "Base template for Django REST application."
-authors = ["Dzmitry"]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "django>=5.2.7",
+    "django-cors-headers>=4.9.0",
+    "django-environ>=0.12.0",
+    "django-filter>=25.2",
+    "django-redis>=6.0.0",
+    "djangorestframework>=3.16.1",
+    "djangorestframework-camel-case>=1.4.2",
+    "drf-spectacular>=0.28.0",
+    "markdown>=3.9",
+    "psycopg[binary]>=3.2.11",
+    "redis>=7.0.0",
+    "sentry-sdk[django]>=2.42.1",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-Django = "^5.0"
-Markdown = "^3.6"
-django-cors-headers = "^4.3"
-django-environ = "^0.11"
-django-filter = "^24.2"
-django-redis = "^5.4"
-djangorestframework = "^3.15"
-djangorestframework-camel-case = "^1.4"
-drf-spectacular = "^0.27"
-psycopg2-binary = "^2.9"
-sentry-sdk = { extras = ["django"], version = "^2.5" }
+[dependency-groups]
+dev = [
+    "django-debug-toolbar>=6.0.0",
+    "factory-boy>=3.3.3",
+    "ipython>=9.6.0",
+    "isort>=7.0.0",
+    "mypy>=1.18.2",
+    "pre-commit>=4.3.0",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
+    "pytest-django>=4.11.1",
+    "pytest-mock>=3.15.1",
+    "ruff>=0.14.1",
+]
 
-[tool.poetry.group.dev.dependencies]
-autopep8 = "^2.2"
-django-debug-toolbar = "^4.4"
-factory-boy = "^3.3"
-flake8 = "^7.0"
-flake8-pyproject = "^1.2.3"
-flake8-isort = "^6.1"
-ipython = "^8.25"
-isort = "^5.13"
-mypy = "^1.10"
-pre-commit = "^3.7"
-pytest = "^8.2"
-pytest-cov = "^5.0"
-pytest-django = "^4.8"
-pytest-mock = "^3.14"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "src.settings.test"
@@ -54,7 +50,6 @@ addopts = [
 norecursedirs = [
     "logs",
     "media",
-    "node_modules",
     "migrations",
     "__pycache__",
     ".git",
@@ -66,30 +61,62 @@ python_files = ["*_test.py", "test_*.py"]
 [tool.coverage.run]
 omit = ["*/migrations/*", "*/apps.py", "*/__init__.py"]
 
-[tool.flake8]
-verbose = 2
-max-line-length = 100
-max-complexity = 10
-exclude = ["__pycache__", "*migrations*", "venv"]
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = [
+    "E",      # Enable 'pycodestyle' rules
+    "W",      # Enable 'pycodestyle' warnings
+    "F",      # Enable 'pyflakes' rules
+    "PLC",    # Enable 'pylint' rules
+    "ANN",    # Enable 'flake8-annotations' rules
+    "E501",   # Check line length
+    "C901",   # Check max code complexity
+    "RUF100", # Unused "noqa" directive
+
+]
 ignore = [
-    # F403 'from module import *' used; unable to detect undefined names
-    "F403",
-    # F405 name may be undefined, or defined from star imports: module
-    "F405",
-    # Line break occurred before a binary operator
-    "W503",
+    "ANN401", # allow 'typing.Any', a necessary evil at times
 ]
 
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+    "F401", # allow 'imported but unused' in '__init__' files
+]
+"*/test_*.py" = [
+    "ANN201", # disable "Missing return type annotation for public function" for tests
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
 [tool.isort]
+# The imports will be sorted as follows:
+# from third_party import (
+#     lib1,
+#     lib2,
+#     lib3,
+#     lib4,
+# )
 include_trailing_comma = true
 known_first_party = ["authentication", "core", "fake_admin", "user"]
-line_length = 100
 multi_line_output = 3
+force_grid_wrap = 2
+line_length = 100
+use_parentheses = true
 
 [tool.mypy]
 # Mypy configuration:
 # https://mypy.readthedocs.io/en/latest/config_file.html
-python_version = 3.11
+python_version = "3.14"
 warn_return_any = false
 warn_unused_configs = true
 check_untyped_defs = true
